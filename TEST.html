@@ -300,25 +300,8 @@ document.getElementById('result').innerHTML = result;
     <button type="button" class="large-button" onclick="calculateScores()">步驟1.(點擊)計算分數</button>
     <p id="result"></p>
 
-    <button type="button" class="large-button" onclick="sendLineMessage()">步驟2.(點擊)發送至 LINE</button><br>
-<textarea type="text" id="resultText" readonly oninput="adjustWidth(this)"></textarea><br>
-
-<script>
-  function sendLineMessage() {
-      // 獲取 textarea 中的內容
-      var message = document.getElementById('resultText').value;
-
-      // 將訊息進行 URL 編碼，處理空格與特殊字元
-      var encodedMessage = encodeURIComponent(message);
-
-      // LINE 的深層連結
-      var lineLink = "https://line.me/R/msg/text/?" + encodedMessage;
-
-      // 打開 LINE 傳送訊息的網頁
-      window.open(lineLink, "_blank");
-  }
-</script>
-
+    <button type="button" class="large-button" onclick="copyResult()">步驟2.(點擊)複製細項</button><br>
+    <textarea type="text" id="resultText" readonly oninput="adjustWidth(this)"></textarea><br>
 
     <p><b>步驟3.請將複製細項貼到Line傳給小精靈。</b></p><br>
 
