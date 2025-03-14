@@ -8,7 +8,7 @@
         body {
             margin: 0;
             padding: 0;
-            font-size: 24px;
+            font-size: 30px;
             box-sizing: border-box;
         }
 
@@ -115,33 +115,47 @@
 
             var SDSRating;
             if (SDSTotal > 3) {
-                SDSRating = "(可能有成癮問題，請進一步聯繫毒防中心0800-770-885。)";
+                SDSRating = "，顯示有成癮問題，建議致電毒防中心免費專線0800-770-885。";
             } else {
-                SDSRating = "";
+                SDSRating = "。";
             }
 
             var BSRSRating;
             if (BSRSTotal >= 6 && BSRSTotal <= 9) {
-                BSRSRating = "(輕度情緒困擾，建議找家人或朋友談談，及尋求紓壓管道。)";
+                BSRSRating = "顯示有輕度情緒困擾，建議找家人或朋友談談，及尋求紓壓管道。";
             } else if (BSRSTotal >= 10 && BSRSTotal <= 14) {
-                BSRSRating = "(中度情緒困擾，建議尋求心理諮商或接受專業諮詢。)";
+                BSRSRating = "顯示有中度情緒困擾，建議尋求心理諮商或接受專業諮詢。";
             } else if (BSRSTotal >= 15) {
-                BSRSRating = "(重度情緒困擾，建議尋求專業輔導或精神科治療。)";
+                BSRSRating = "顯示有重度情緒困擾，建議尋求專業輔導或精神科治療。";
             } else {
-                BSRSRating = "";
+                BSRSRating = "。";
             }
+
+            var BSRS6thRating;
+            if (score6 > 1) {
+                BSRS6thRating = "，建議尋求專業輔導或精神科治療。";
+            } else {
+                BSRS6thRating = "。";
+            }
+
 
             var APGARRating;
             if (APGARTotal >= 4 && APGARTotal <= 6) {
-                APGARRating = "(中度家庭功能不足。)";
+                APGARRating = "，顯示中度家庭功能不足。";
             } else if (APGARTotal < 4) {
-                APGARRating = "(重度家庭功能不足，建議尋求家庭支持服務。)";
+                APGARRating = "，顯示重度家庭功能不足，建議尋求家庭支持服務。";
             } else {
-                APGARRating = "";
+                APGARRating = "。";
             }
   
 
-            var result = "SDS總分是: " + SDSTotal + SDSRating + "\nRCC總分是: " + RCCTotal + "\nBSRS總分是: " + BSRSTotal + BSRSRating + "\nAPGAR總分是: " + APGARTotal + APGARRating;
+            var result = 
+              "你的物質依賴程度是 " + SDSTotal + " 分" + SDSRating + 
+            "\n你的改變動機得分是 " + RCCTotal + " 分。" +
+            "\n你的情緒困擾程度是 " + BSRSTotal + " 分" + BSRSRating + 
+            "\n你的自殺風險評估是 " + score6 + " 分" + BSRS6thRating + 
+            "\n你的家庭功能評估是 " + APGARTotal + " 分"+ APGARRating ;
+
             document.getElementById('result').innerText = result;
             document.getElementById('resultText').value = "SDS:" + SDSScores.join(',') + "\nRCC:" + RCCScores.join(',') + "\nBSRS:" + BSRSScores.join(',')+ "\nAPGAR:" + APGARScores.join(',');
         }
@@ -164,7 +178,7 @@
 <div class="container">
 <body>
     <p><b>一、物質依賴嚴重度量表-SDS量表</b><br>
-        請勾選最符合過去3個月內使用成癮物質(毒品)的狀態。</p>
+        請勾選最符合你過去3個月內使用成癮物質(毒品)的狀態。</p>
     <form>
         <p>1.過去3個月內，你是否曾覺得你的成癮藥物使用已經失去控制?<br>
             <input type="radio" name="SDS1" value="0" class="larger-radio"  checked > 從來沒有或幾乎沒有(0)<br>
@@ -206,7 +220,7 @@
     </form>
 
     <p><b>三、情緒與自殺風險評估-簡式健康量</b></p>
-        <p>最近一星期(包含今天)，受到以下問題困擾的程度，圈選一個個案認為最能代表自己感覺的答案。</p>
+        <p>最近一星期(包含今天)，勾選一個你認為最能代表自己感覺的答案。</p>
     <form>
         <p>1.感覺緊張不安。<br>
             <input type="radio" name="BSRS1" value="0" class="larger-radio"  checked> 完全沒有(0)<br>
@@ -253,27 +267,27 @@
 
         <p><b>四、家庭功能評估-APGAR量表</b></p>
     <form>
-        <p>1.當您遇到困難時，可以求助於家人。<br>
+        <p>1.當你遇到困難時，可以求助於家人。<br>
             <input type="radio" name="APGAR1" value="0" class="larger-radio"  checked> 幾乎沒有(0)<br>
             <input type="radio" name="APGAR1" value="1" class="larger-radio"> 有時滿意(1)<br>
             <input type="radio" name="APGAR1" value="2" class="larger-radio"> 經常滿意(2)<br>
         </p>
-        <p>2.家人可以和您討論事情及分攤問題。<br>
+        <p>2.家人可以和你討論事情及分攤問題。<br>
             <input type="radio" name="APGAR2" value="0" class="larger-radio"  checked> 幾乎沒有(0)<br>
             <input type="radio" name="APGAR2" value="1" class="larger-radio"> 有時滿意(1)<br>
             <input type="radio" name="APGAR2" value="2" class="larger-radio"> 經常滿意(2)<br>
         </p>
-        <p>3.當您希望從事新活動，或有新的發展方向時，家人都能夠接受且給予鼓勵支持。<br>
+        <p>3.當你希望從事新活動，或有新的發展方向時，家人都能夠接受且給予鼓勵支持。<br>
             <input type="radio" name="APGAR3" value="0" class="larger-radio"  checked> 幾乎沒有(0)<br>
             <input type="radio" name="APGAR3" value="1" class="larger-radio"> 有時滿意(1)<br>
             <input type="radio" name="APGAR3" value="2" class="larger-radio"> 經常滿意(2)<br>
         </p>
-        <p>4.對於您的情緒表達，家人都能接受。<br>
+        <p>4.對於你的情緒表達，家人都能接受。<br>
             <input type="radio" name="APGAR4" value="0" class="larger-radio"  checked> 幾乎沒有(0)<br>
             <input type="radio" name="APGAR4" value="1" class="larger-radio"> 有時滿意(1)<br>
             <input type="radio" name="APGAR4" value="2" class="larger-radio"> 經常滿意(2)<br>
         </p>
-        <p>5.家人與您相處的方式。<br>
+        <p>5.家人與你相處的方式。<br>
             <input type="radio" name="APGAR5" value="0" class="larger-radio"  checked> 幾乎沒有(0)<br>
             <input type="radio" name="APGAR5" value="1" class="larger-radio"> 有時滿意(1)<br>
             <input type="radio" name="APGAR5" value="2" class="larger-radio"> 經常滿意(2)<br>
