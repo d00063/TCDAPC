@@ -150,13 +150,16 @@
   
 
             var result = 
-              "你的物質依賴程度是 " + SDSTotal + " 分" + SDSRating + 
-            "\n你的改變動機得分是 " + RCCTotal + " 分。" +
-            "\n你的情緒困擾程度是 " + BSRSTotal + " 分" + BSRSRating + 
-            "\n你的自殺風險評估是 " + score6 + " 分" + BSRS6thRating + 
-            "\n你的家庭功能評估是 " + APGARTotal + " 分"+ APGARRating ;
+                "<div style='border: 1px solid black; padding: 10px; margin-bottom: 10px;'>你的物質依賴程度是 " + SDSTotal + " 分" + SDSRating + "</div>" +
+                "<div style='border: 1px solid black; padding: 10px; margin-bottom: 10px;'>你的改變動機得分是 " + RCCTotal + " 分。</div>" +
+                "<div style='border: 1px solid black; padding: 10px; margin-bottom: 10px;'>你的情緒困擾程度是 " + BSRSTotal + " 分" + BSRSRating + "</div>" +
+                "<div style='border: 1px solid black; padding: 10px; margin-bottom: 10px;'>你的自殺風險評估是 " + score6 + " 分" + BSRS6thRating + "</div>" +
+                "<div style='border: 1px solid black; padding: 10px; margin-bottom: 10px;'>你的家庭功能評估是 " + APGARTotal + " 分" + APGARRating + "</div>";
 
-            document.getElementById('result').innerText = result;
+document.getElementById('result').innerHTML = result;
+
+
+
             document.getElementById('resultText').value = "SDS:" + SDSScores.join(',') + "\nRCC:" + RCCScores.join(',') + "\nBSRS:" + BSRSScores.join(',')+ "\nAPGAR:" + APGARScores.join(',');
         }
 
