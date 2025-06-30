@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <title>值日簽到</title>
+</head>
+<body>
+  <h2>今日值日生簽到</h2>
+  <div id="content">載入中…</div>
+
+  <script>
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz2-C9_qCu_o4zJofbNqDJCpG_SYQA_02rFP7PJMFFh0YGpU2MSCIL8qu-kS0ATSHRoCg/exec';
+
+    fetch(SCRIPT_URL)
+      .then(res => res.json())
+      .then(data => {
+        if (!data.name) {
+          document.getElementById('content').textContent = '今日無值日生';
+          return;
+        }
+
+        const html = `
+          <p>今天是 <strong>${data.name}</strong> 的值日生。</p>
+          ${data.checked ? '<p>✅ 已簽到</p>' : '<button onclick="signIn()">簽到</button>'}
+        `;
+        document.getElementById('content').innerHTML = html;
+      });
+
+    function signIn() {
+      fetch(SCRIPT_URL, { method: 'POST' })
+        .then(res => res.text())
+        .then(msg => {
+          document.getElementById('content').innerHTML += '<p style="color:green;">✅ 已簽到！</p>';
+        });
+    }
+  </script>
+</body>
+</html>
